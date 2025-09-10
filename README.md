@@ -1,17 +1,20 @@
 # Fin-MCP
 
-**Fin-MCP** is a self-hosted, modular **Multi-Provider Payment Connector (MCP)** that allows enterprises to integrate multiple payment providers (e.g., Stripe, Paystack) via a single API. Designed for **self-hosted deployments**, it's lightweight, extensible, and ready for AI or enterprise integrations.
+**Fin-MCP** is a self-hosted, modular MCP that allows AI agents or enterprise systems to interact with multiple payment providers (e.g., Stripe, Paystack) via a single unified API.
+It abstracts the provider logic so agents can call payment operations seamlessly.
 
 ---
 
 ## Features
 
-- **Multi-provider support**: Start with Stripe; add Paystack, Flutterwave, or any provider.
+- **MCP for Payments**: AI agents can perform payment actions without knowing provider details.
 - **Dynamic MCP tools**: Initialize payment, verify payment, refund, create customers, and invoices.
-- **Optional authentication**: Protect access with a configurable API key.
-- **Metadata endpoint**: Let clients or AI agents discover available tools and supported providers.
-- **Self-hosted**: Full control over credentials and deployment.
+- **Optional authentication**: Protect MCP access with API keys.
+- **Metadata endpoint**: Agents can discover available tools and supported providers.
+- **Self-hosted MCP**: Full control over deployments and provider credentials.
 - **Extensible**: Add new tools or providers with minimal changes.
+- **Protocol-driven tool execution**: Agents can call any tool via `/mcp/call`.
+- **Provider abstraction**: MCP selects or routes to the appropriate payment provider automatically (e.g., based on provider like stripe, based on currency (soon)).
 
 ---
 
@@ -81,7 +84,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 GET /mcp/metadata
 ```
 
-Returns all available tools and which providers support them:
+Agents discover available payment tools and providers
 
 ```json
 {
@@ -102,6 +105,8 @@ Returns all available tools and which providers support them:
 ```
 POST /mcp/call
 ```
+
+Agents execute payment operations through the MCP protocol.
 
 **Headers** (if auth enabled):
 
